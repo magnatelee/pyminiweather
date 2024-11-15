@@ -1,12 +1,12 @@
 import os
 from enum import IntEnum
 
-if "LEGATE_MAX_DIM" in os.environ and "LEGATE_MAX_FIELDS" in os.environ:
-    import cunumeric as numpy
-    from cunumeric import convolve as convolve
-else:
+if int(os.environ.get("PYMW_USE_NUMPY", 0)) != 0:
     import numpy as numpy
     from scipy.signal import convolve as convolve
+else:
+    import cunumeric as numpy
+    from cunumeric import convolve as convolve
 
 print(f"Imported numpy backend: {numpy.__name__}")
 
